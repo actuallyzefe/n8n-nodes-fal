@@ -12,7 +12,7 @@ import { executeImageToVideo } from './resources/image-to-video/execute';
 
 export class Fal implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Fal.ai',
+		displayName: 'Fal',
 		name: 'fal',
 		icon: 'file:fal-ai-logo.svg',
 		group: ['transform'],
@@ -20,7 +20,7 @@ export class Fal implements INodeType {
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description: 'Interact with fal.ai AI model APIs for image and video generation',
 		defaults: {
-			name: 'Fal.ai',
+			name: 'Fal',
 		},
 		usableAsTool: true,
 		inputs: ['main'],
