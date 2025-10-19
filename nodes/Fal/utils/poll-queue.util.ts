@@ -1,5 +1,5 @@
 import type { IExecuteFunctions, IDataObject } from 'n8n-workflow';
-import { NodeOperationError } from 'n8n-workflow';
+import { NodeOperationError, sleep } from 'n8n-workflow';
 import { QueueStatusResponseInterface } from '../interfaces';
 import { QUEUE_STATUS } from '../enums';
 
@@ -55,7 +55,7 @@ export async function pollQueueResult(
 				context.logger.info(`Request status: ${statusResponse.status}${position}`);
 
 				// Continue polling
-				await new Promise((resolve) => setTimeout(resolve, pollInterval));
+				await sleep(pollInterval);
 			} else {
 				throw new NodeOperationError(
 					context.getNode(),

@@ -22,9 +22,9 @@ export const textToImageGenerateDescription: INodeProperties[] = [
 		displayName: 'Model',
 		name: 'model',
 		type: 'options',
+		default: '',
 		displayOptions: { show: displayFor },
-		options: getModelOptions(), // Dynamically loaded from models.ts
-		default: TEXT_TO_IMAGE_MODEL_IDS.NANO_BANANA,
+		options: getModelOptions(),
 		description: 'The AI model to use for image generation',
 	},
 	{
@@ -58,9 +58,9 @@ export const textToImageGenerateDescription: INodeProperties[] = [
 		options: [
 			{ name: '1:1 (Square)', value: '1:1' },
 			{ name: '16:9 (Landscape)', value: '16:9' },
-			{ name: '9:16 (Portrait)', value: '9:16' },
 			{ name: '3:4 (Portrait)', value: '3:4' },
 			{ name: '4:3 (Landscape)', value: '4:3' },
+			{ name: '9:16 (Portrait)', value: '9:16' },
 		],
 		default: '1:1',
 		description: 'The aspect ratio of the generated image',

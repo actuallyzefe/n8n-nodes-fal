@@ -1,5 +1,6 @@
 import type {
 	IAuthenticateGeneric,
+	Icon,
 	ICredentialTestRequest,
 	ICredentialType,
 	INodeProperties,
@@ -9,6 +10,8 @@ export class FalApi implements ICredentialType {
 	name = 'falApi';
 
 	displayName = 'Fal.ai API';
+
+	icon = 'file:fal-ai-logo.svg' as Icon;
 
 	documentationUrl = 'https://fal.ai/dashboard/keys';
 
