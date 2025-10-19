@@ -22,6 +22,7 @@ export class Fal implements INodeType {
 		defaults: {
 			name: 'Fal.ai',
 		},
+		usableAsTool: true,
 		inputs: ['main'],
 		outputs: ['main'],
 		credentials: [{ name: 'falApi', required: true }],
