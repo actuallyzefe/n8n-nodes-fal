@@ -54,8 +54,5 @@
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
-	},
-	"dependencies": {
-		"@types/node": "^24.8.1"
 	}
 }
