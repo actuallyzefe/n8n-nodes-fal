@@ -78,15 +78,6 @@ export const textToImageGenerateDescription: INodeProperties[] = [
 		description: 'Output resolution quality',
 	},
 	{
-		displayName: 'Negative Prompt',
-		name: 'negativePrompt',
-		type: 'string',
-		displayOptions: { show: displayForImagen4 },
-		default: '',
-		description: 'What to discourage in the generated images',
-		placeholder: 'blurry, low quality, distorted',
-	},
-	{
 		displayName: 'Additional Options',
 		name: 'additionalOptions',
 		type: 'collection',
@@ -94,6 +85,14 @@ export const textToImageGenerateDescription: INodeProperties[] = [
 		default: {},
 		placeholder: 'Add Option',
 		options: [
+			{
+				displayName: 'Negative Prompt',
+				name: 'negativePrompt',
+				type: 'string',
+				default: '',
+				description: 'What to discourage in the generated images',
+				placeholder: 'blurry, low quality, distorted',
+			},
 			{
 				displayName: 'Seed',
 				name: 'seed',

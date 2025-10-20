@@ -18,7 +18,6 @@ export async function executeImagen4(
 	const numImages = context.getNodeParameter('numImages', itemIndex, 1) as number;
 	const aspectRatio = context.getNodeParameter('aspectRatio', itemIndex, '1:1') as string;
 	const resolution = context.getNodeParameter('resolution', itemIndex, '1K') as string;
-	const negativePrompt = context.getNodeParameter('negativePrompt', itemIndex, '') as string;
 	const additionalOptions = context.getNodeParameter(
 		'additionalOptions',
 		itemIndex,
@@ -34,8 +33,8 @@ export async function executeImagen4(
 	};
 
 	// Add optional parameters
-	if (negativePrompt) {
-		body.negative_prompt = negativePrompt;
+	if (additionalOptions.negativePrompt) {
+		body.negative_prompt = additionalOptions.negativePrompt;
 	}
 	if (additionalOptions.seed !== undefined) {
 		body.seed = additionalOptions.seed;
