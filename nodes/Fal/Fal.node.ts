@@ -7,8 +7,10 @@ import type {
 import { NodeOperationError } from 'n8n-workflow';
 import { textToImageDescription } from './resources/text-to-image';
 import { imageToVideoDescription } from './resources/image-to-video';
+import { textToSpeechDescription } from './resources/text-to-speech';
 import { executeTextToImage } from './resources/text-to-image/execute';
 import { executeImageToVideo } from './resources/image-to-video/execute';
+import { executeTextToSpeech } from './resources/text-to-speech/execute';
 
 export class Fal implements INodeType {
 	description: INodeTypeDescription = {
@@ -18,7 +20,7 @@ export class Fal implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Interact with fal.ai AI model APIs for image and video generation',
+		description: 'Interact with fal.ai AI model APIs for image, video, and speech generation',
 		defaults: {
 			name: 'Fal',
 		},
@@ -34,20 +36,26 @@ export class Fal implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
+						name: 'Image to Video',
+						value: 'imageToVideo',
+						description: 'Generate videos from images',
+					},
+					{
 						name: 'Text to Image',
 						value: 'textToImage',
 						description: 'Generate images from text prompts',
 					},
 					{
-						name: 'Image to Video',
-						value: 'imageToVideo',
-						description: 'Generate videos from images',
+						name: 'Text to Speech',
+						value: 'textToSpeech',
+						description: 'Generate speech from text',
 					},
 				],
 				default: 'textToImage',
 			},
 			...textToImageDescription,
 			...imageToVideoDescription,
+			...textToSpeechDescription,
 		],
 	};
 
@@ -67,6 +75,10 @@ export class Fal implements INodeType {
 
 					case 'imageToVideo':
 						responseData = await executeImageToVideo(this, i);
+						break;
+
+					case 'textToSpeech':
+						responseData = await executeTextToSpeech(this, i);
 						break;
 
 					default:
