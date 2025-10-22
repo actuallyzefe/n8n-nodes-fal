@@ -8,9 +8,11 @@ import { NodeOperationError } from 'n8n-workflow';
 import { textToImageDescription } from './resources/text-to-image';
 import { imageToVideoDescription } from './resources/image-to-video';
 import { textToSpeechDescription } from './resources/text-to-speech';
+import { textToVideoDescription } from './resources/text-to-video';
 import { executeTextToImage } from './resources/text-to-image/execute';
 import { executeImageToVideo } from './resources/image-to-video/execute';
 import { executeTextToSpeech } from './resources/text-to-speech/execute';
+import { executeTextToVideo } from './resources/text-to-video/execute';
 
 export class Fal implements INodeType {
 	description: INodeTypeDescription = {
@@ -50,12 +52,18 @@ export class Fal implements INodeType {
 						value: 'textToSpeech',
 						description: 'Generate speech from text',
 					},
+					{
+						name: 'Text to Video',
+						value: 'textToVideo',
+						description: 'Generate videos from text prompts',
+					},
 				],
 				default: 'textToImage',
 			},
 			...textToImageDescription,
 			...imageToVideoDescription,
 			...textToSpeechDescription,
+			...textToVideoDescription,
 		],
 	};
 
@@ -79,6 +87,10 @@ export class Fal implements INodeType {
 
 					case 'textToSpeech':
 						responseData = await executeTextToSpeech(this, i);
+						break;
+
+					case 'textToVideo':
+						responseData = await executeTextToVideo(this, i);
 						break;
 
 					default:

@@ -1,8 +1,7 @@
 import type { IExecuteFunctions, IDataObject } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
-import { IMAGE_TO_VIDEO_MODEL_IDS, type ImageToVideoModelId } from '../models';
-import { executeVeo2 } from './veo-2';
-import { executeKlingV16Pro } from './kling-v1-6-pro';
+import { TEXT_TO_VIDEO_MODEL_IDS, type TextToVideoModelId } from '../models';
+import { executeSora2 } from './sora-2';
 import { executeSora2Pro } from './sora-2-pro';
 
 /**
@@ -10,25 +9,24 @@ import { executeSora2Pro } from './sora-2-pro';
  * Add new models here: map model ID to its execute function
  */
 const MODEL_EXECUTORS: Record<
-	ImageToVideoModelId,
+	TextToVideoModelId,
 	(context: IExecuteFunctions, itemIndex: number) => Promise<IDataObject>
 > = {
-	[IMAGE_TO_VIDEO_MODEL_IDS.VEO_2]: executeVeo2,
-	[IMAGE_TO_VIDEO_MODEL_IDS.KLING_V1_6_PRO]: executeKlingV16Pro,
-	[IMAGE_TO_VIDEO_MODEL_IDS.SORA_2_PRO]: executeSora2Pro,
+	[TEXT_TO_VIDEO_MODEL_IDS.SORA_2]: executeSora2,
+	[TEXT_TO_VIDEO_MODEL_IDS.SORA_2_PRO]: executeSora2Pro,
 };
 
 /**
- * Router function for image-to-video operations
+ * Router function for text-to-video operations
  */
-export async function executeImageToVideo(
+export async function executeTextToVideo(
 	context: IExecuteFunctions,
 	itemIndex: number,
 ): Promise<IDataObject> {
 	const operation = context.getNodeParameter('operation', itemIndex) as string;
 
-	if (operation === 'generateVideo') {
-		const modelId = context.getNodeParameter('model', itemIndex) as ImageToVideoModelId;
+	if (operation === 'generate') {
+		const modelId = context.getNodeParameter('model', itemIndex) as TextToVideoModelId;
 
 		// Get the executor function for this model
 		const executor = MODEL_EXECUTORS[modelId];
@@ -45,7 +43,7 @@ export async function executeImageToVideo(
 
 	throw new NodeOperationError(
 		context.getNode(),
-		`The operation "${operation}" is not supported for image to video`,
+		`The operation "${operation}" is not supported for text to video`,
 		{ itemIndex },
 	);
 }

@@ -19,12 +19,14 @@ export interface ModelConfig {
 export const IMAGE_TO_VIDEO_MODEL_IDS = {
 	VEO_2: 'veo-2',
 	KLING_V1_6_PRO: 'kling-v1-6-pro',
+	SORA_2_PRO: 'sora-2-pro',
 } as const;
 
 /**
  * Type for all valid image-to-video model IDs
  */
-export type ImageToVideoModelId = typeof IMAGE_TO_VIDEO_MODEL_IDS[keyof typeof IMAGE_TO_VIDEO_MODEL_IDS];
+export type ImageToVideoModelId =
+	(typeof IMAGE_TO_VIDEO_MODEL_IDS)[keyof typeof IMAGE_TO_VIDEO_MODEL_IDS];
 
 /**
  * Available Image-to-Video Models
@@ -42,6 +44,13 @@ export const IMAGE_TO_VIDEO_MODELS: Record<ImageToVideoModelId, ModelConfig> = {
 		modelId: 'fal-ai/kling-video/v1.6/pro/image-to-video',
 		displayName: 'Kling Video v1.6 Pro',
 		description: 'Kling v1.6 Pro model for advanced video generation',
+	},
+	[IMAGE_TO_VIDEO_MODEL_IDS.SORA_2_PRO]: {
+		id: IMAGE_TO_VIDEO_MODEL_IDS.SORA_2_PRO,
+		modelId: 'fal-ai/sora-2/image-to-video/pro',
+		displayName: 'OpenAI Sora 2 Pro',
+		description:
+			'Generate high-quality videos from images with 1080p resolution using OpenAI Sora 2 Pro',
 	},
 };
 

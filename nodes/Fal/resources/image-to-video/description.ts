@@ -18,6 +18,11 @@ const displayForKlingV16Pro = {
 	model: [IMAGE_TO_VIDEO_MODEL_IDS.KLING_V1_6_PRO],
 };
 
+const displayForSora2Pro = {
+	...displayFor,
+	model: [IMAGE_TO_VIDEO_MODEL_IDS.SORA_2_PRO],
+};
+
 export const imageToVideoGenerateDescription: INodeProperties[] = [
 	{
 		displayName: 'Model',
@@ -137,6 +142,68 @@ export const imageToVideoGenerateDescription: INodeProperties[] = [
 					maxValue: 1,
 					numberPrecision: 1,
 				},
+			},
+		],
+	},
+
+	// ===== Sora 2 Pro specific fields =====
+	{
+		displayName: 'Aspect Ratio',
+		name: 'aspectRatio',
+		type: 'options',
+		displayOptions: { show: displayForSora2Pro },
+		options: [
+			{ name: 'Auto', value: 'auto' },
+			{ name: '16:9 (Landscape)', value: '16:9' },
+			{ name: '9:16 (Portrait)', value: '9:16' },
+		],
+		default: 'auto',
+		description: 'Aspect ratio for the generated video',
+	},
+	{
+		displayName: 'Duration',
+		name: 'durationSora',
+		type: 'options',
+		displayOptions: { show: displayForSora2Pro },
+		options: [
+			{ name: '4 Seconds', value: '4' },
+			{ name: '8 Seconds', value: '8' },
+			{ name: '12 Seconds', value: '12' },
+		],
+		default: '4',
+		description: 'Duration of the generated video in seconds',
+	},
+	{
+		displayName: 'Resolution',
+		name: 'resolution',
+		type: 'options',
+		displayOptions: { show: displayForSora2Pro },
+		options: [
+			{ name: 'Auto', value: 'auto' },
+			{ name: '720p', value: '720p' },
+			{ name: '1080p', value: '1080p' },
+		],
+		default: 'auto',
+		description: 'The resolution of the generated video',
+	},
+	{
+		displayName: 'Additional Options',
+		name: 'additionalOptions',
+		type: 'collection',
+		displayOptions: { show: displayForSora2Pro },
+		default: {},
+		placeholder: 'Add Option',
+		options: [
+			{
+				displayName: 'API Key',
+				name: 'api_key',
+				type: 'string',
+				default: '',
+				typeOptions: {
+					password: true,
+				},
+				description:
+					'OpenAI API key to use. If provided, you will not be billed by fal.ai for the request.',
 			},
 		],
 	},
