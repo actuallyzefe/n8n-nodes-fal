@@ -4,6 +4,8 @@ import { TEXT_TO_VIDEO_MODEL_IDS, type TextToVideoModelId } from '../models';
 import { executeSora2 } from './sora-2';
 import { executeSora2Pro } from './sora-2-pro';
 import { executeSeedanceV1ProFast } from './seedance-v1-pro-fast';
+import { executeVeo31 } from './veo-3-1';
+import { executeVeo31Fast } from './veo-3-1-fast';
 
 /**
  * Model execution function mapping
@@ -16,6 +18,8 @@ const MODEL_EXECUTORS: Record<
 	[TEXT_TO_VIDEO_MODEL_IDS.SORA_2]: executeSora2,
 	[TEXT_TO_VIDEO_MODEL_IDS.SORA_2_PRO]: executeSora2Pro,
 	[TEXT_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST]: executeSeedanceV1ProFast,
+	[TEXT_TO_VIDEO_MODEL_IDS.VEO_3_1]: executeVeo31,
+	[TEXT_TO_VIDEO_MODEL_IDS.VEO_3_1_FAST]: executeVeo31Fast,
 };
 
 /**

@@ -28,6 +28,41 @@ const displayForSeedanceV1ProFast = {
 	model: [IMAGE_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST],
 };
 
+const displayForVeo31ReferenceToVideo = {
+	...displayFor,
+	model: [IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_REFERENCE_TO_VIDEO],
+};
+
+const displayForVeo31FastFirstLastFrame = {
+	...displayFor,
+	model: [
+		IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_FAST_FIRST_LAST_FRAME,
+		IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_FIRST_LAST_FRAME,
+	],
+};
+
+const displayForVeo31ImageToVideo = {
+	...displayFor,
+	model: [
+		IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_IMAGE_TO_VIDEO,
+		IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_FAST_IMAGE_TO_VIDEO,
+	],
+};
+
+// Display for all models except Veo 3.1 (which uses multiple images)
+const displayForSingleImage = {
+	operation: ['generateVideo'],
+	resource: ['imageToVideo'],
+	model: [
+		IMAGE_TO_VIDEO_MODEL_IDS.VEO_2,
+		IMAGE_TO_VIDEO_MODEL_IDS.KLING_V1_6_PRO,
+		IMAGE_TO_VIDEO_MODEL_IDS.SORA_2_PRO,
+		IMAGE_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST,
+		IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_IMAGE_TO_VIDEO,
+		IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_FAST_IMAGE_TO_VIDEO,
+	],
+};
+
 export const imageToVideoGenerateDescription: INodeProperties[] = [
 	{
 		displayName: 'Model',
@@ -54,7 +89,7 @@ export const imageToVideoGenerateDescription: INodeProperties[] = [
 		displayName: 'Image URL',
 		name: 'imageUrl',
 		type: 'string',
-		displayOptions: { show: displayFor },
+		displayOptions: { show: displayForSingleImage },
 		default: '',
 		required: true,
 		description: 'URL of the input image (should be 720p or higher)',
@@ -290,6 +325,191 @@ export const imageToVideoGenerateDescription: INodeProperties[] = [
 				typeOptions: {
 					numberPrecision: 0,
 				},
+			},
+		],
+	},
+
+	// ===== Veo 3.1 Reference-to-Video specific fields =====
+	{
+		displayName: 'Image URLs',
+		name: 'imageUrls',
+		type: 'string',
+		displayOptions: { show: displayForVeo31ReferenceToVideo },
+		default: '',
+		required: true,
+		typeOptions: {
+			rows: 4,
+		},
+		description:
+			'URLs of the reference images (up to 8MB each). Enter one URL per line. These images will be used for consistent subject appearance.',
+		placeholder:
+			'https://example.com/image1.jpg\nhttps://example.com/image2.jpg\nhttps://example.com/image3.jpg',
+	},
+	{
+		displayName: 'Duration',
+		name: 'durationVeo31',
+		type: 'options',
+		displayOptions: { show: displayForVeo31ReferenceToVideo },
+		options: [{ name: '8 Seconds', value: '8s' }],
+		default: '8s',
+		description: 'Duration of the generated video',
+	},
+	{
+		displayName: 'Resolution',
+		name: 'resolution',
+		type: 'options',
+		displayOptions: { show: displayForVeo31ReferenceToVideo },
+		options: [
+			{ name: '720p', value: '720p' },
+			{ name: '1080p', value: '1080p' },
+		],
+		default: '720p',
+		description: 'Resolution of the generated video',
+	},
+	{
+		displayName: 'Additional Options',
+		name: 'additionalOptions',
+		type: 'collection',
+		displayOptions: { show: displayForVeo31ReferenceToVideo },
+		default: {},
+		placeholder: 'Add Option',
+		options: [
+			{
+				displayName: 'Generate Audio',
+				name: 'generate_audio',
+				type: 'boolean',
+				default: true,
+				description:
+					'Whether to generate audio for the video. If false, 33% less credits will be used.',
+			},
+		],
+	},
+
+	// ===== Veo 3.1 Fast First-Last Frame specific fields =====
+	{
+		displayName: 'First Frame URL',
+		name: 'firstFrameUrl',
+		type: 'string',
+		displayOptions: { show: displayForVeo31FastFirstLastFrame },
+		default: '',
+		required: true,
+		description: 'URL of the first frame image (up to 8MB)',
+		placeholder: 'https://example.com/first-frame.jpg',
+	},
+	{
+		displayName: 'Last Frame URL',
+		name: 'lastFrameUrl',
+		type: 'string',
+		displayOptions: { show: displayForVeo31FastFirstLastFrame },
+		default: '',
+		required: true,
+		description: 'URL of the last frame image (up to 8MB)',
+		placeholder: 'https://example.com/last-frame.jpg',
+	},
+	{
+		displayName: 'Aspect Ratio',
+		name: 'aspectRatio',
+		type: 'options',
+		displayOptions: { show: displayForVeo31FastFirstLastFrame },
+		options: [
+			{ name: '1:1 (Square)', value: '1:1' },
+			{ name: '16:9 (Landscape)', value: '16:9' },
+			{ name: '9:16 (Portrait)', value: '9:16' },
+			{ name: 'Auto', value: 'auto' },
+		],
+		default: 'auto',
+		description: 'Aspect ratio of the generated video',
+	},
+	{
+		displayName: 'Duration',
+		name: 'durationVeo31Fast',
+		type: 'options',
+		displayOptions: { show: displayForVeo31FastFirstLastFrame },
+		options: [{ name: '8 Seconds', value: '8s' }],
+		default: '8s',
+		description: 'Duration of the generated video',
+	},
+	{
+		displayName: 'Resolution',
+		name: 'resolution',
+		type: 'options',
+		displayOptions: { show: displayForVeo31FastFirstLastFrame },
+		options: [
+			{ name: '720p', value: '720p' },
+			{ name: '1080p', value: '1080p' },
+		],
+		default: '720p',
+		description: 'Resolution of the generated video',
+	},
+	{
+		displayName: 'Additional Options',
+		name: 'additionalOptions',
+		type: 'collection',
+		displayOptions: { show: displayForVeo31FastFirstLastFrame },
+		default: {},
+		placeholder: 'Add Option',
+		options: [
+			{
+				displayName: 'Generate Audio',
+				name: 'generate_audio',
+				type: 'boolean',
+				default: true,
+				description:
+					'Whether to generate audio for the video. If false, 33% less credits will be used.',
+			},
+		],
+	},
+
+	// ===== Veo 3.1 Image-to-Video specific fields =====
+	{
+		displayName: 'Aspect Ratio',
+		name: 'aspectRatio',
+		type: 'options',
+		displayOptions: { show: displayForVeo31ImageToVideo },
+		options: [
+			{ name: '16:9 (Landscape)', value: '16:9' },
+			{ name: '9:16 (Portrait)', value: '9:16' },
+		],
+		default: '16:9',
+		description:
+			'The aspect ratio of the generated video. Only 16:9 and 9:16 are supported. If the input image is not in this aspect ratio, it will be cropped to fit.',
+	},
+	{
+		displayName: 'Duration',
+		name: 'durationVeo31ImageToVideo',
+		type: 'options',
+		displayOptions: { show: displayForVeo31ImageToVideo },
+		options: [{ name: '8 Seconds', value: '8s' }],
+		default: '8s',
+		description: 'Duration of the generated video',
+	},
+	{
+		displayName: 'Resolution',
+		name: 'resolution',
+		type: 'options',
+		displayOptions: { show: displayForVeo31ImageToVideo },
+		options: [
+			{ name: '720p', value: '720p' },
+			{ name: '1080p', value: '1080p' },
+		],
+		default: '720p',
+		description: 'Resolution of the generated video',
+	},
+	{
+		displayName: 'Additional Options',
+		name: 'additionalOptions',
+		type: 'collection',
+		displayOptions: { show: displayForVeo31ImageToVideo },
+		default: {},
+		placeholder: 'Add Option',
+		options: [
+			{
+				displayName: 'Generate Audio',
+				name: 'generate_audio',
+				type: 'boolean',
+				default: true,
+				description:
+					'Whether to generate audio for the video. If false, 33% less credits will be used.',
 			},
 		],
 	},

@@ -20,6 +20,8 @@ export const TEXT_TO_VIDEO_MODEL_IDS = {
 	SORA_2: 'sora-2',
 	SORA_2_PRO: 'sora-2-pro',
 	SEEDANCE_V1_PRO_FAST: 'seedance-v1-pro-fast',
+	VEO_3_1: 'veo-3-1',
+	VEO_3_1_FAST: 'veo-3-1-fast',
 } as const;
 
 /**
@@ -51,6 +53,20 @@ export const TEXT_TO_VIDEO_MODELS: Record<TextToVideoModelId, ModelConfig> = {
 		displayName: 'Seedance 1.0 Pro Fast',
 		description:
 			'Fast, efficient and high quality text-to-video by Bytedance. Supports multiple aspect ratios and up to 12 seconds.',
+	},
+	[TEXT_TO_VIDEO_MODEL_IDS.VEO_3_1]: {
+		id: TEXT_TO_VIDEO_MODEL_IDS.VEO_3_1,
+		modelId: 'fal-ai/veo3.1',
+		displayName: 'Google Veo 3.1',
+		description:
+			"Generate high-quality videos from text using Google's Veo 3.1 model with 720p/1080p resolution",
+	},
+	[TEXT_TO_VIDEO_MODEL_IDS.VEO_3_1_FAST]: {
+		id: TEXT_TO_VIDEO_MODEL_IDS.VEO_3_1_FAST,
+		modelId: 'fal-ai/veo3.1/fast',
+		displayName: 'Google Veo 3.1 Fast',
+		description:
+			"Faster video generation using Google's Veo 3.1 fast model with 720p/1080p resolution",
 	},
 };
 

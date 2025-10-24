@@ -21,6 +21,11 @@ export const IMAGE_TO_VIDEO_MODEL_IDS = {
 	KLING_V1_6_PRO: 'kling-v1-6-pro',
 	SORA_2_PRO: 'sora-2-pro',
 	SEEDANCE_V1_PRO_FAST: 'seedance-v1-pro-fast',
+	VEO_3_1_REFERENCE_TO_VIDEO: 'veo-3-1-reference-to-video',
+	VEO_3_1_FAST_FIRST_LAST_FRAME: 'veo-3-1-fast-first-last-frame',
+	VEO_3_1_FIRST_LAST_FRAME: 'veo-3-1-first-last-frame',
+	VEO_3_1_IMAGE_TO_VIDEO: 'veo-3-1-image-to-video',
+	VEO_3_1_FAST_IMAGE_TO_VIDEO: 'veo-3-1-fast-image-to-video',
 } as const;
 
 /**
@@ -59,6 +64,40 @@ export const IMAGE_TO_VIDEO_MODELS: Record<ImageToVideoModelId, ModelConfig> = {
 		displayName: 'Seedance 1.0 Pro Fast',
 		description:
 			'Fast and efficient image-to-video by Bytedance. Supports auto aspect ratio detection and up to 12 seconds.',
+	},
+	[IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_REFERENCE_TO_VIDEO]: {
+		id: IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_REFERENCE_TO_VIDEO,
+		modelId: 'fal-ai/veo3.1/reference-to-video',
+		displayName: 'Veo 3.1 Reference to Video',
+		description:
+			"Generate videos from reference images using Google's Veo 3.1 model with consistent subject appearance",
+	},
+	[IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_FAST_FIRST_LAST_FRAME]: {
+		id: IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_FAST_FIRST_LAST_FRAME,
+		modelId: 'fal-ai/veo3.1/fast/first-last-frame-to-video',
+		displayName: 'Veo 3.1 First-Last Frame Fast',
+		description:
+			"Animate between first and last frames using Google's Veo 3.1 Fast model with 720p/1080p resolution",
+	},
+	[IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_FIRST_LAST_FRAME]: {
+		id: IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_FIRST_LAST_FRAME,
+		modelId: 'fal-ai/veo3.1/first-last-frame-to-video',
+		displayName: 'Veo 3.1 First-Last Frame',
+		description:
+			"Animate between first and last frames using Google's Veo 3.1 model with 720p/1080p resolution",
+	},
+	[IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_IMAGE_TO_VIDEO]: {
+		id: IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_IMAGE_TO_VIDEO,
+		modelId: 'fal-ai/veo3.1/image-to-video',
+		displayName: 'Veo 3.1 Image to Video',
+		description: "Animate a single image using Google's Veo 3.1 model with 720p/1080p resolution",
+	},
+	[IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_FAST_IMAGE_TO_VIDEO]: {
+		id: IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_FAST_IMAGE_TO_VIDEO,
+		modelId: 'fal-ai/veo3.1/fast/image-to-video',
+		displayName: 'Veo 3.1 Image to Video Fast',
+		description:
+			"Animate a single image using Google's Veo 3.1 Fast model with 720p/1080p resolution",
 	},
 };
 

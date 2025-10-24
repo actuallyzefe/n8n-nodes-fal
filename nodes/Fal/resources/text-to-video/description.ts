@@ -23,6 +23,11 @@ const displayForSeedanceV1ProFast = {
 	model: [TEXT_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST],
 };
 
+const displayForVeo31 = {
+	...displayFor,
+	model: [TEXT_TO_VIDEO_MODEL_IDS.VEO_3_1, TEXT_TO_VIDEO_MODEL_IDS.VEO_3_1_FAST],
+};
+
 export const textToVideoGenerateDescription: INodeProperties[] = [
 	{
 		displayName: 'Model',
@@ -231,6 +236,98 @@ export const textToVideoGenerateDescription: INodeProperties[] = [
 				type: 'boolean',
 				default: false,
 				description: 'Whether to fix the camera position during video generation',
+			},
+			{
+				displayName: 'Seed',
+				name: 'seed',
+				type: 'number',
+				default: -1,
+				description: 'Random seed to control video generation. Use -1 for random.',
+				typeOptions: {
+					numberPrecision: 0,
+				},
+			},
+		],
+	},
+
+	// ===== Veo 3.1 specific fields =====
+	{
+		displayName: 'Aspect Ratio',
+		name: 'aspectRatio',
+		type: 'options',
+		displayOptions: { show: displayForVeo31 },
+		options: [
+			{ name: '1:1 (Square)', value: '1:1' },
+			{ name: '16:9 (Landscape)', value: '16:9' },
+			{ name: '9:16 (Portrait)', value: '9:16' },
+		],
+		default: '16:9',
+		description:
+			'The aspect ratio of the generated video. If set to 1:1, the video will be outpainted.',
+	},
+	{
+		displayName: 'Duration',
+		name: 'duration',
+		type: 'options',
+		displayOptions: { show: displayForVeo31 },
+		options: [
+			{ name: '4 Seconds', value: '4s' },
+			{ name: '6 Seconds', value: '6s' },
+			{ name: '8 Seconds', value: '8s' },
+		],
+		default: '8s',
+		description: 'Duration of the generated video',
+	},
+	{
+		displayName: 'Resolution',
+		name: 'resolution',
+		type: 'options',
+		displayOptions: { show: displayForVeo31 },
+		options: [
+			{ name: '720p', value: '720p' },
+			{ name: '1080p', value: '1080p' },
+		],
+		default: '720p',
+		description: 'The resolution of the generated video',
+	},
+	{
+		displayName: 'Additional Options',
+		name: 'additionalOptions',
+		type: 'collection',
+		displayOptions: { show: displayForVeo31 },
+		default: {},
+		placeholder: 'Add Option',
+		options: [
+			{
+				displayName: 'Auto Fix',
+				name: 'auto_fix',
+				type: 'boolean',
+				default: true,
+				description:
+					'Whether to automatically attempt to fix prompts that fail content policy or validation checks by rewriting them',
+			},
+			{
+				displayName: 'Enhance Prompt',
+				name: 'enhance_prompt',
+				type: 'boolean',
+				default: true,
+				description: 'Whether to enhance the video generation with improved prompt interpretation',
+			},
+			{
+				displayName: 'Generate Audio',
+				name: 'generate_audio',
+				type: 'boolean',
+				default: true,
+				description:
+					'Whether to generate audio for the video. If false, 33% less credits will be used.',
+			},
+			{
+				displayName: 'Negative Prompt',
+				name: 'negative_prompt',
+				type: 'string',
+				default: '',
+				description: 'A negative prompt to guide the video generation',
+				placeholder: 'blurry, distorted, low quality',
 			},
 			{
 				displayName: 'Seed',
