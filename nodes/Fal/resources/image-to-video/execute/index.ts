@@ -4,6 +4,7 @@ import { IMAGE_TO_VIDEO_MODEL_IDS, type ImageToVideoModelId } from '../models';
 import { executeVeo2 } from './veo-2';
 import { executeKlingV16Pro } from './kling-v1-6-pro';
 import { executeSora2Pro } from './sora-2-pro';
+import { executeSeedanceV1ProFast } from './seedance-v1-pro-fast';
 
 /**
  * Model execution function mapping
@@ -16,6 +17,7 @@ const MODEL_EXECUTORS: Record<
 	[IMAGE_TO_VIDEO_MODEL_IDS.VEO_2]: executeVeo2,
 	[IMAGE_TO_VIDEO_MODEL_IDS.KLING_V1_6_PRO]: executeKlingV16Pro,
 	[IMAGE_TO_VIDEO_MODEL_IDS.SORA_2_PRO]: executeSora2Pro,
+	[IMAGE_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST]: executeSeedanceV1ProFast,
 };
 
 /**

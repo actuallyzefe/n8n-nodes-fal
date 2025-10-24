@@ -3,6 +3,7 @@ import { NodeOperationError } from 'n8n-workflow';
 import { TEXT_TO_VIDEO_MODEL_IDS, type TextToVideoModelId } from '../models';
 import { executeSora2 } from './sora-2';
 import { executeSora2Pro } from './sora-2-pro';
+import { executeSeedanceV1ProFast } from './seedance-v1-pro-fast';
 
 /**
  * Model execution function mapping
@@ -14,6 +15,7 @@ const MODEL_EXECUTORS: Record<
 > = {
 	[TEXT_TO_VIDEO_MODEL_IDS.SORA_2]: executeSora2,
 	[TEXT_TO_VIDEO_MODEL_IDS.SORA_2_PRO]: executeSora2Pro,
+	[TEXT_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST]: executeSeedanceV1ProFast,
 };
 
 /**

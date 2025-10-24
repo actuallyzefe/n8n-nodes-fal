@@ -19,6 +19,7 @@ export interface ModelConfig {
 export const TEXT_TO_VIDEO_MODEL_IDS = {
 	SORA_2: 'sora-2',
 	SORA_2_PRO: 'sora-2-pro',
+	SEEDANCE_V1_PRO_FAST: 'seedance-v1-pro-fast',
 } as const;
 
 /**
@@ -43,6 +44,13 @@ export const TEXT_TO_VIDEO_MODELS: Record<TextToVideoModelId, ModelConfig> = {
 		modelId: 'fal-ai/sora-2/text-to-video/pro',
 		displayName: 'OpenAI Sora 2 Pro',
 		description: 'Generate high-quality videos with 1080p resolution using OpenAI Sora 2 Pro',
+	},
+	[TEXT_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST]: {
+		id: TEXT_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST,
+		modelId: 'fal-ai/bytedance/seedance/v1/pro/fast/text-to-video',
+		displayName: 'Seedance 1.0 Pro Fast',
+		description:
+			'Fast, efficient and high quality text-to-video by Bytedance. Supports multiple aspect ratios and up to 12 seconds.',
 	},
 };
 

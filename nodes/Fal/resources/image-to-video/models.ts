@@ -20,6 +20,7 @@ export const IMAGE_TO_VIDEO_MODEL_IDS = {
 	VEO_2: 'veo-2',
 	KLING_V1_6_PRO: 'kling-v1-6-pro',
 	SORA_2_PRO: 'sora-2-pro',
+	SEEDANCE_V1_PRO_FAST: 'seedance-v1-pro-fast',
 } as const;
 
 /**
@@ -51,6 +52,13 @@ export const IMAGE_TO_VIDEO_MODELS: Record<ImageToVideoModelId, ModelConfig> = {
 		displayName: 'OpenAI Sora 2 Pro',
 		description:
 			'Generate high-quality videos from images with 1080p resolution using OpenAI Sora 2 Pro',
+	},
+	[IMAGE_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST]: {
+		id: IMAGE_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST,
+		modelId: 'fal-ai/bytedance/seedance/v1/pro/fast/image-to-video',
+		displayName: 'Seedance 1.0 Pro Fast',
+		description:
+			'Fast and efficient image-to-video by Bytedance. Supports auto aspect ratio detection and up to 12 seconds.',
 	},
 };
 
