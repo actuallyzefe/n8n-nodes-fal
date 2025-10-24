@@ -30,30 +30,40 @@ npm install n8n-nodes-fal
 
 ## Operations
 
-### Text to Image Resource (2 models)
+### Text to Image
 
-- **Generate**: Generate images from text prompts using AI models
-  - **Nano Banana**: Gemini-based fast image generation
-    - Supports multiple image generation (1-4 images)
-    - Optional safety checker
-    - Fast generation times
-  - **Imagen 4**: Google's Imagen 4 for high-quality generation
-    - Multiple aspect ratios (1:1, 16:9, 9:16, 3:4, 4:3)
-    - Resolution options (1K, 2K)
-    - Negative prompts for better control
-    - Reproducible generation with seed support
+- **Generate**: Generate images from text prompts using various AI models
+  - Multiple models available with different strengths
+  - Configurable aspect ratios and resolutions
+  - Optional negative prompts for better control
+  - Seed support for reproducible results
+  - Batch generation support
 
-### Image to Video Resource (2 models)
+### Text to Video
+
+- **Generate**: Generate videos from text prompts using AI models
+  - Multiple models with different capabilities
+  - Various aspect ratios and resolutions
+  - Duration options
+  - Optional audio generation
+  - Advanced prompt controls
+
+### Image to Video
 
 - **Generate Video**: Convert images to videos using AI models
-  - **Veo 2**: Google's Veo 2 model for high-quality video generation
-    - Configurable aspect ratios (auto, 16:9, 9:16, auto prefer portrait)
-    - Duration options: 5s, 6s, 7s, 8s
-  - **Kling Video v1.6 Pro**: Advanced video generation with extended options
-    - Multiple aspect ratios (16:9, 9:16, 1:1, 4:3, 3:4, 21:9, 9:21)
-    - Duration: 5s or 10s
-    - Negative prompts
-    - CFG scale control
+  - Multiple models for different use cases
+  - Single image animation
+  - Multiple reference images support
+  - First-last frame animation
+  - Configurable aspect ratios, durations, and resolutions
+
+### Text to Speech
+
+- **Generate**: Convert text to speech using AI models
+  - Multiple voice options
+  - Language support
+  - Adjustable speech parameters (stability, similarity, style, speed)
+  - Optional timestamps
 
 ## Credentials
 
@@ -81,27 +91,43 @@ The credentials will be automatically tested by making a request to the fal.ai A
 1. Add the **Fal.ai** node to your workflow
 2. Select **Text to Image** as the resource
 3. Select **Generate** as the operation
-4. Choose your model:
-   - **Nano Banana** for fast generation
-   - **Imagen 4** for high-quality results
+4. Choose your preferred model from the dropdown
 5. Fill in:
    - **Prompt**: Your text description (e.g., "A beautiful sunset over mountains")
-   - **Model**: Choose between Nano Banana or Imagen 4
-   - **Additional Options**: Configure aspect ratio, resolution, etc.
+   - **Additional Options**: Configure aspect ratio, resolution, etc. based on the selected model
 
-### Basic Video Generation
+### Basic Video Generation from Text
+
+1. Add the **Fal.ai** node to your workflow
+2. Select **Text to Video** as the resource
+3. Select **Generate** as the operation
+4. Choose your preferred model from the dropdown
+5. Fill in:
+   - **Prompt**: Your video description (e.g., "A time-lapse of clouds moving over a city")
+   - Configure duration, aspect ratio, and resolution options
+
+### Basic Video Generation from Image
 
 1. Add the **Fal.ai** node to your workflow
 2. Select **Image to Video** as the resource
 3. Select **Generate Video** as the operation
-4. Choose your model:
-   - **Veo 2** for Google's latest model
-   - **Kling Video v1.6 Pro** for advanced options
+4. Choose your preferred model from the dropdown
 5. Fill in:
-   - **Image URL**: Publicly accessible image URL
+   - **Image URL**: Publicly accessible image URL (or multiple URLs for reference models)
    - **Prompt**: Animation description (e.g., "Camera slowly pans from left to right")
-   - **Duration**: Choose video length
-   - **Aspect Ratio**: Select appropriate ratio
+   - Configure duration, aspect ratio, and resolution options
+
+### Basic Text to Speech
+
+1. Add the **Fal.ai** node to your workflow
+2. Select **Text to Speech** as the resource
+3. Select **Generate** as the operation
+4. Choose your preferred model from the dropdown
+5. Fill in:
+   - **Text**: The text you want to convert to speech
+   - **Voice**: Select from available voice options
+   - **Language**: Choose the language
+   - Configure additional speech parameters as needed
 
 ### Queue Processing
 
@@ -116,44 +142,39 @@ The node handles all queue management automatically - you don't need to worry ab
 
 ### Chaining Operations
 
-You can chain multiple Fal.ai nodes together:
+You can chain multiple Fal.ai nodes together for complex workflows:
 
 1. **Text to Image** → Generate an image from text
-2. **HTTP Request** → Download the image if needed
+2. **HTTP Request** → Download/process the image if needed
 3. **Image to Video** → Convert the generated image to video
+4. **Text to Speech** → Add narration to your content
 
-Example workflow: Text prompt → Image generation → Video animation
+Example workflows:
+
+- Text prompt → Image generation → Video animation
+- Text → Speech generation → Combine with video
+- Multiple images → Reference-based video generation
 
 ## Features
 
-### Text to Image Operations
+### Comprehensive AI Generation
 
-- ✅ **Generate images** from text prompts using AI models
-- ✅ **Multiple models** - Nano Banana (fast) and Imagen 4 (high-quality)
-- ✅ **Aspect ratio control** - 1:1, 16:9, 9:16, 3:4, 4:3
-- ✅ **Resolution options** - 1K and 2K for Imagen 4
-- ✅ **Negative prompts** for better control
-- ✅ **Seed support** for reproducible results
-- ✅ **Batch generation** - Generate 1-4 images at once
-- ✅ **Safety checker** - Optional content filtering
-
-### Image to Video Operations
-
-- ✅ **Generate videos** from images using AI models
-- ✅ **Multiple models** - Veo 2 and Kling Video v1.6 Pro
-- ✅ **Duration control** - 5s, 6s, 7s, 8s, or 10s
-- ✅ **Aspect ratio options** - Multiple ratios including 21:9
-- ✅ **Animation prompts** - Describe desired motion
-- ✅ **CFG scale control** - Fine-tune prompt adherence
-- ✅ **Negative prompts** - Avoid unwanted elements
-- ✅ **Queue-based processing** - Reliable async generation
+- ✅ **Text to Image** - Generate images from text prompts with multiple models
+- ✅ **Text to Video** - Create videos directly from text descriptions
+- ✅ **Image to Video** - Animate static images into videos
+- ✅ **Text to Speech** - Convert text to natural-sounding speech
+- ✅ **Multiple models** - Choose the best model for your specific use case
+- ✅ **Flexible parameters** - Aspect ratios, resolutions, durations, and more
+- ✅ **Advanced controls** - Negative prompts, seeds, style parameters
+- ✅ **Batch operations** - Generate multiple outputs in a single request
+- ✅ **Reference-based generation** - Use multiple reference images for consistency
 
 ### Queue Management
 
 - ✅ **Automatic polling** - No manual status checking required
 - ✅ **Status tracking** - Real-time progress updates
 - ✅ **Error handling** - Graceful failure management
-- ✅ **Timeout protection** - 20-minute maximum wait time
+- ✅ **Timeout protection** - Appropriate timeouts for long-running operations
 - ✅ **Retry logic** - Built-in retry mechanisms
 
 ## Rate Limits
@@ -184,12 +205,6 @@ For more details about the fal.ai API:
 - n8n community nodes documentation
 - [fal.ai Documentation](https://docs.fal.ai/)
 - [GitHub Repository](https://github.com/actuallyzefe/n8n-nodes-fal)
-
-## Version History
-
-### 0.1.0
-
-- Initial release
 
 ## Development
 
