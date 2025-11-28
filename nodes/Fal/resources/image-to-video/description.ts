@@ -23,6 +23,11 @@ const displayForSora2Pro = {
 	model: [IMAGE_TO_VIDEO_MODEL_IDS.SORA_2_PRO],
 };
 
+const displayForSora2 = {
+	...displayFor,
+	model: [IMAGE_TO_VIDEO_MODEL_IDS.SORA_2],
+};
+
 const displayForSeedanceV1ProFast = {
 	...displayFor,
 	model: [IMAGE_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST],
@@ -57,6 +62,7 @@ const displayForSingleImage = {
 		IMAGE_TO_VIDEO_MODEL_IDS.VEO_2,
 		IMAGE_TO_VIDEO_MODEL_IDS.KLING_V1_6_PRO,
 		IMAGE_TO_VIDEO_MODEL_IDS.SORA_2_PRO,
+		IMAGE_TO_VIDEO_MODEL_IDS.SORA_2,
 		IMAGE_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST,
 		IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_IMAGE_TO_VIDEO,
 		IMAGE_TO_VIDEO_MODEL_IDS.VEO_3_1_FAST_IMAGE_TO_VIDEO,
@@ -244,6 +250,64 @@ export const imageToVideoGenerateDescription: INodeProperties[] = [
 				},
 				description:
 					'OpenAI API key to use. If provided, you will not be billed by fal.ai for the request.',
+			},
+		],
+	},
+
+	// ===== Sora 2 specific fields =====
+	{
+		displayName: 'Aspect Ratio',
+		name: 'aspectRatioSora2',
+		type: 'options',
+		displayOptions: { show: displayForSora2 },
+		options: [
+			{ name: 'Auto', value: 'auto' },
+			{ name: '16:9 (Landscape)', value: '16:9' },
+			{ name: '9:16 (Portrait)', value: '9:16' },
+		],
+		default: 'auto',
+		description: 'Aspect ratio for the generated video',
+	},
+	{
+		displayName: 'Duration',
+		name: 'durationSora2',
+		type: 'options',
+		displayOptions: { show: displayForSora2 },
+		options: [
+			{ name: '4 Seconds', value: '4' },
+			{ name: '8 Seconds', value: '8' },
+			{ name: '12 Seconds', value: '12' },
+		],
+		default: '4',
+		description: 'Duration of the generated video in seconds',
+	},
+	{
+		displayName: 'Resolution',
+		name: 'resolutionSora2',
+		type: 'options',
+		displayOptions: { show: displayForSora2 },
+		options: [
+			{ name: 'Auto', value: 'auto' },
+			{ name: '720p', value: '720p' },
+		],
+		default: 'auto',
+		description: 'The resolution of the generated video',
+	},
+	{
+		displayName: 'Additional Options',
+		name: 'additionalOptions',
+		type: 'collection',
+		displayOptions: { show: displayForSora2 },
+		default: {},
+		placeholder: 'Add Option',
+		options: [
+			{
+				displayName: 'Delete Video',
+				name: 'delete_video',
+				type: 'boolean',
+				default: true,
+				description:
+					'Whether to delete the video after generation for privacy reasons. If True, the video cannot be used for remixing and will be permanently deleted.',
 			},
 		],
 	},

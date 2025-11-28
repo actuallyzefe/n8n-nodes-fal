@@ -2,6 +2,7 @@ import type { IExecuteFunctions, IDataObject } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
 import { TEXT_TO_IMAGE_MODEL_IDS, type TextToImageModelId } from '../models';
 import { executeNanoBanana } from './nano-banana';
+import { executeNanoBanana2 } from './nano-banana-2';
 import { executeImagen4 } from './imagen-4';
 
 /**
@@ -13,6 +14,7 @@ const MODEL_EXECUTORS: Record<
 	(context: IExecuteFunctions, itemIndex: number) => Promise<IDataObject>
 > = {
 	[TEXT_TO_IMAGE_MODEL_IDS.NANO_BANANA]: executeNanoBanana,
+	[TEXT_TO_IMAGE_MODEL_IDS.NANO_BANANA_2]: executeNanoBanana2,
 	[TEXT_TO_IMAGE_MODEL_IDS.IMAGEN_4]: executeImagen4,
 };
 

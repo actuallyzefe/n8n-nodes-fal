@@ -18,6 +18,7 @@ export interface ModelConfig {
 
 export const TEXT_TO_IMAGE_MODEL_IDS = {
 	NANO_BANANA: 'nano-banana',
+	NANO_BANANA_2: 'nano-banana-2',
 	IMAGEN_4: 'imagen-4',
 } as const;
 
@@ -42,6 +43,12 @@ export const TEXT_TO_IMAGE_MODELS: Record<TextToImageModelId, ModelConfig> = {
 		modelId: 'fal-ai/imagen4/preview',
 		displayName: 'Imagen 4',
 		description: 'Google Imagen 4 - High-quality with enhanced detail',
+	},
+	[TEXT_TO_IMAGE_MODEL_IDS.NANO_BANANA_2]: {
+		id: TEXT_TO_IMAGE_MODEL_IDS.NANO_BANANA_2,
+		modelId: 'fal-ai/nano-banana-pro',
+		displayName: 'Nano Banana 2',
+		description: 'Next gen fast image generation model',
 	},
 };
 
