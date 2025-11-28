@@ -17,6 +17,11 @@ const displayForImagen4 = {
 	model: [TEXT_TO_IMAGE_MODEL_IDS.IMAGEN_4],
 };
 
+const displayForNanoBanana2 = {
+	...displayFor,
+	model: [TEXT_TO_IMAGE_MODEL_IDS.NANO_BANANA_2],
+};
+
 export const textToImageGenerateDescription: INodeProperties[] = [
 	{
 		displayName: 'Model',
@@ -119,5 +124,60 @@ export const textToImageGenerateDescription: INodeProperties[] = [
 				description: 'Whether to check generated images for NSFW content',
 			},
 		],
+	},
+	// Nano Banana 2 specific fields
+	{
+		displayName: 'Aspect Ratio',
+		name: 'aspectRatioNanoBanana2',
+		type: 'options',
+		displayOptions: { show: displayForNanoBanana2 },
+		options: [
+			{ name: '21:9', value: '21:9' },
+			{ name: '16:9', value: '16:9' },
+			{ name: '3:2', value: '3:2' },
+			{ name: '4:3', value: '4:3' },
+			{ name: '5:4', value: '5:4' },
+			{ name: '1:1 (Square)', value: '1:1' },
+			{ name: '4:5', value: '4:5' },
+			{ name: '3:4', value: '3:4' },
+			{ name: '2:3', value: '2:3' },
+			{ name: '9:16', value: '9:16' },
+		],
+		default: '1:1',
+		description: 'The aspect ratio of the generated image',
+	},
+	{
+		displayName: 'Resolution',
+		name: 'resolutionNanoBanana2',
+		type: 'options',
+		displayOptions: { show: displayForNanoBanana2 },
+		options: [
+			{ name: '1K', value: '1K' },
+			{ name: '2K', value: '2K' },
+			{ name: '4K', value: '4K' },
+		],
+		default: '1K',
+		description: 'The resolution of the image to generate',
+	},
+	{
+		displayName: 'Output Format',
+		name: 'outputFormatNanoBanana2',
+		type: 'options',
+		displayOptions: { show: displayForNanoBanana2 },
+		options: [
+			{ name: 'JPEG', value: 'jpeg' },
+			{ name: 'PNG', value: 'png' },
+			{ name: 'WebP', value: 'webp' },
+		],
+		default: 'png',
+		description: 'The format of the generated image',
+	},
+	{
+		displayName: 'Sync Mode',
+		name: 'syncModeNanoBanana2',
+		type: 'boolean',
+		displayOptions: { show: displayForNanoBanana2 },
+		default: false,
+		description: 'If True, the media will be returned as a data URI and the output data won\'t be available in the request history',
 	},
 ];

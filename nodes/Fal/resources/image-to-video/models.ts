@@ -20,6 +20,7 @@ export const IMAGE_TO_VIDEO_MODEL_IDS = {
 	VEO_2: 'veo-2',
 	KLING_V1_6_PRO: 'kling-v1-6-pro',
 	SORA_2_PRO: 'sora-2-pro',
+	SORA_2: 'sora-2',
 	SEEDANCE_V1_PRO_FAST: 'seedance-v1-pro-fast',
 	VEO_3_1_REFERENCE_TO_VIDEO: 'veo-3-1-reference-to-video',
 	VEO_3_1_FAST_FIRST_LAST_FRAME: 'veo-3-1-fast-first-last-frame',
@@ -57,6 +58,12 @@ export const IMAGE_TO_VIDEO_MODELS: Record<ImageToVideoModelId, ModelConfig> = {
 		displayName: 'OpenAI Sora 2 Pro',
 		description:
 			'Generate high-quality videos from images with 1080p resolution using OpenAI Sora 2 Pro',
+	},
+	[IMAGE_TO_VIDEO_MODEL_IDS.SORA_2]: {
+		id: IMAGE_TO_VIDEO_MODEL_IDS.SORA_2,
+		modelId: 'fal-ai/sora-2/image-to-video',
+		displayName: 'OpenAI Sora 2',
+		description: 'Generate videos from images using OpenAI Sora 2',
 	},
 	[IMAGE_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST]: {
 		id: IMAGE_TO_VIDEO_MODEL_IDS.SEEDANCE_V1_PRO_FAST,
