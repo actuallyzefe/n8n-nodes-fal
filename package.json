@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-fal",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "n8n community node for fal.ai AI model APIs",
 	"license": "MIT",
 	"homepage": "https://github.com/actuallyzefe/n8n-nodes-fal",
