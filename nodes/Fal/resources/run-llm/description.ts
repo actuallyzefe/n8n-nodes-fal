@@ -48,9 +48,24 @@ export const runLlmGenerateDescription: INodeProperties[] = [
 		required: true,
 		options: [
 			{
+				name: 'Anthropic Claude Sonnet 4.5',
+				value: 'anthropic/claude-sonnet-4.5',
+				description: 'Advanced Claude model from Anthropic',
+			},
+			{
+				name: 'Custom Model',
+				value: 'custom',
+				description: 'Specify a custom model name',
+			},
+			{
 				name: 'Google Gemini 2.5 Flash',
 				value: 'google/gemini-2.5-flash',
 				description: 'Fast and efficient model from Google',
+			},
+			{
+				name: 'Meta Llama 4 Maverick',
+				value: 'meta-llama/llama-4-maverick',
+				description: 'Latest Llama model from Meta',
 			},
 			{
 				name: 'OpenAI GPT-4.1',
@@ -61,21 +76,6 @@ export const runLlmGenerateDescription: INodeProperties[] = [
 				name: 'OpenAI GPT-OSS-120B',
 				value: 'openai/gpt-oss-120b',
 				description: 'Open source GPT model with 120B parameters',
-			},
-			{
-				name: 'Anthropic Claude Sonnet 4.5',
-				value: 'anthropic/claude-sonnet-4.5',
-				description: 'Advanced Claude model from Anthropic',
-			},
-			{
-				name: 'Meta Llama 4 Maverick',
-				value: 'meta-llama/llama-4-maverick',
-				description: 'Latest Llama model from Meta',
-			},
-			{
-				name: 'Custom Model',
-				value: 'custom',
-				description: 'Specify a custom model name',
 			},
 		],
 		description:
