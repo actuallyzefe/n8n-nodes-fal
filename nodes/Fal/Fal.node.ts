@@ -9,10 +9,12 @@ import { textToImageDescription } from './resources/text-to-image';
 import { imageToVideoDescription } from './resources/image-to-video';
 import { textToSpeechDescription } from './resources/text-to-speech';
 import { textToVideoDescription } from './resources/text-to-video';
+import { runLlmDescription } from './resources/run-llm';
 import { executeTextToImage } from './resources/text-to-image/execute';
 import { executeImageToVideo } from './resources/image-to-video/execute';
 import { executeTextToSpeech } from './resources/text-to-speech/execute';
 import { executeTextToVideo } from './resources/text-to-video/execute';
+import { executeRunLlm } from './resources/run-llm/execute';
 
 export class Fal implements INodeType {
 	description: INodeTypeDescription = {
@@ -22,7 +24,8 @@ export class Fal implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Interact with fal.ai AI model APIs for image, video, and speech generation',
+		description:
+			'Interact with fal.ai AI model APIs for image, video, speech generation, and LLM text completion',
 		defaults: {
 			name: 'Fal',
 		},
@@ -41,6 +44,11 @@ export class Fal implements INodeType {
 						name: 'Image to Video',
 						value: 'imageToVideo',
 						description: 'Generate videos from images',
+					},
+					{
+						name: 'Run LLM',
+						value: 'runLlm',
+						description: 'Generate text completions using LLM models',
 					},
 					{
 						name: 'Text to Image',
@@ -64,6 +72,7 @@ export class Fal implements INodeType {
 			...imageToVideoDescription,
 			...textToSpeechDescription,
 			...textToVideoDescription,
+			...runLlmDescription,
 		],
 	};
 
@@ -91,6 +100,10 @@ export class Fal implements INodeType {
 
 					case 'textToVideo':
 						responseData = await executeTextToVideo(this, i);
+						break;
+
+					case 'runLlm':
+						responseData = await executeRunLlm(this, i);
 						break;
 
 					default:
