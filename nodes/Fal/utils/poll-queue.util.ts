@@ -16,32 +16,28 @@ export async function pollQueueResult(
 	const maxAttempts = 240; // 20 minutes with 5s intervals
 	const pollInterval = 5000; // 5 seconds
 
-	// Get credentials for authentication
-	const credentials = await context.getCredentials('falApi');
-	const apiKey = credentials.apiKey as string;
-
 	for (let attempt = 0; attempt < maxAttempts; attempt++) {
 		try {
 			// Check status using the provided status_url
-			const statusResponse = (await context.helpers.request({
-				method: 'GET',
-				url: `${statusUrl}?logs=1`,
-				headers: {
-					Authorization: `Key ${apiKey}`,
+			const statusResponse = (await context.helpers.httpRequestWithAuthentication.call(
+				context,
+				'falApi',
+				{
+					method: 'GET',
+					url: `${statusUrl}?logs=1`,
 				},
-				json: true,
-			})) as QueueStatusResponseInterface;
+			)) as QueueStatusResponseInterface;
 
 			if (statusResponse.status === QUEUE_STATUS.COMPLETED) {
 				// Fetch final result using the provided response_url
-				const result = (await context.helpers.request({
-					method: 'GET',
-					url: responseUrl,
-					headers: {
-						Authorization: `Key ${apiKey}`,
+				const result = (await context.helpers.httpRequestWithAuthentication.call(
+					context,
+					'falApi',
+					{
+						method: 'GET',
+						url: responseUrl,
 					},
-					json: true,
-				})) as IDataObject;
+				)) as IDataObject;
 
 				return result;
 			} else if (

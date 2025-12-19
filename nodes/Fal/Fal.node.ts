@@ -4,7 +4,7 @@ import type {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { NodeOperationError } from 'n8n-workflow';
+import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
 import { textToImageDescription } from './resources/text-to-image';
 import { imageToVideoDescription } from './resources/image-to-video';
 import { textToSpeechDescription } from './resources/text-to-speech';
@@ -30,8 +30,8 @@ export class Fal implements INodeType {
 			name: 'Fal',
 		},
 		usableAsTool: true,
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [{ name: 'falApi', required: true }],
 		properties: [
 			{

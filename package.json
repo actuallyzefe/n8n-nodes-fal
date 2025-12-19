@@ -31,7 +31,7 @@
 		"lint": "n8n-node lint",
 		"lint:fix": "n8n-node lint --fix",
 		"release": "n8n-node release",
-		"prepublishOnly": "echo 'Skipping prerelease for now'"
+		"prepublishOnly": "n8n-node prerelease"
 	},
 	"files": [
 		"dist"
