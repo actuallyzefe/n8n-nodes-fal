@@ -55,5 +55,8 @@
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
+	},
+	"dependencies": {
+		"n8n-nodes-fal": "^0.2.4"
 	}
 }
