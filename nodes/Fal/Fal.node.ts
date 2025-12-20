@@ -15,6 +15,8 @@ import { executeImageToVideo } from './resources/image-to-video/execute';
 import { executeTextToSpeech } from './resources/text-to-speech/execute';
 import { executeTextToVideo } from './resources/text-to-video/execute';
 import { executeRunLlm } from './resources/run-llm/execute';
+import { speechToTextDescription } from './resources/speech-to-text';
+import { executeSpeechToText } from './resources/speech-to-text/execute';
 
 export class Fal implements INodeType {
 	description: INodeTypeDescription = {
@@ -65,6 +67,11 @@ export class Fal implements INodeType {
 						value: 'textToVideo',
 						description: 'Generate videos from text prompts',
 					},
+					{
+						name: 'Speech to Text',
+						value: 'speechToText',
+						description: 'Transcribe audio to text',
+					},
 				],
 				default: 'textToImage',
 			},
@@ -73,6 +80,7 @@ export class Fal implements INodeType {
 			...textToSpeechDescription,
 			...textToVideoDescription,
 			...runLlmDescription,
+			...speechToTextDescription
 		],
 	};
 
@@ -105,6 +113,10 @@ export class Fal implements INodeType {
 					case 'runLlm':
 						responseData = await executeRunLlm(this, i);
 						break;
+
+					case 'speechToText':
+						responseData = await executeSpeechToText(this, i);
+						break;				
 
 					default:
 						throw new NodeOperationError(
