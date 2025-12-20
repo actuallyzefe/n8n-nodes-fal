@@ -53,6 +53,11 @@ export class Fal implements INodeType {
 						description: 'Generate text completions using LLM models',
 					},
 					{
+						name: 'Speech to Text',
+						value: 'speechToText',
+						description: 'Transcribe audio to text',
+					},
+					{
 						name: 'Text to Image',
 						value: 'textToImage',
 						description: 'Generate images from text prompts',
@@ -66,11 +71,6 @@ export class Fal implements INodeType {
 						name: 'Text to Video',
 						value: 'textToVideo',
 						description: 'Generate videos from text prompts',
-					},
-					{
-						name: 'Speech to Text',
-						value: 'speechToText',
-						description: 'Transcribe audio to text',
 					},
 				],
 				default: 'textToImage',
