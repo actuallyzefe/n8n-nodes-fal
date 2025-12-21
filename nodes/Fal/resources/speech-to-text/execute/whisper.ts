@@ -20,11 +20,35 @@ export async function executeWhisper(
 	const language = context.getNodeParameter('language', itemIndex) as string;
 	const task = context.getNodeParameter('task', itemIndex) as string;
 
+	// Get additional options
+	const additionalOptions = context.getNodeParameter(
+		'additionalOptions',
+		itemIndex,
+		{},
+	) as IDataObject;
+
 	const body: IDataObject = {
 		audio_url: audioUrl,
 		language,
 		task,
 	};
+
+	// Add optional parameters if provided
+	if (additionalOptions.diarize !== undefined) {
+		body.diarize = additionalOptions.diarize;
+	}
+	if (additionalOptions.chunk_level) {
+		body.chunk_level = additionalOptions.chunk_level;
+	}
+	if (additionalOptions.batch_size !== undefined) {
+		body.batch_size = additionalOptions.batch_size;
+	}
+	if (additionalOptions.prompt) {
+		body.prompt = additionalOptions.prompt;
+	}
+	if (additionalOptions.num_speakers !== undefined) {
+		body.num_speakers = additionalOptions.num_speakers;
+	}
 
 	// Submit to queue
 	const submitResponse = (await context.helpers.httpRequestWithAuthentication.call(

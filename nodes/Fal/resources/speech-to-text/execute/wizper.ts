@@ -20,11 +20,29 @@ export async function executeWizper(
 	const language = context.getNodeParameter('language', itemIndex) as string;
 	const task = context.getNodeParameter('task', itemIndex) as string;
 
+	// Get additional options
+	const additionalOptions = context.getNodeParameter(
+		'additionalOptions',
+		itemIndex,
+		{},
+	) as IDataObject;
+
 	const body: IDataObject = {
 		audio_url: audioUrl,
 		language,
 		task,
 	};
+
+	// Add optional parameters if provided
+	if (additionalOptions.chunk_level) {
+		body.chunk_level = additionalOptions.chunk_level;
+	}
+	if (additionalOptions.max_segment_len !== undefined) {
+		body.max_segment_len = additionalOptions.max_segment_len;
+	}
+	if (additionalOptions.merge_chunks !== undefined) {
+		body.merge_chunks = additionalOptions.merge_chunks;
+	}
 
 	// Submit to queue
 	const submitResponse = (await context.helpers.httpRequestWithAuthentication.call(
