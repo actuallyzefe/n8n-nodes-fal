@@ -6,9 +6,9 @@ const displayFor = {
 	resource: ['speechToText'],
 };
 
-const displayForWhisper = {
+const displayForBothModels = {
 	...displayFor,
-	model: [SPEECH_TO_TEXT_MODEL_IDS.WHISPER],
+	model: [SPEECH_TO_TEXT_MODEL_IDS.WHISPER, SPEECH_TO_TEXT_MODEL_IDS.WIZPER],
 };
 
 export const speechToTextTranscribeDescription: INodeProperties[] = [
@@ -36,7 +36,7 @@ export const speechToTextTranscribeDescription: INodeProperties[] = [
 		displayName: 'Language',
 		name: 'language',
 		type: 'string',
-		displayOptions: { show: displayForWhisper },
+		displayOptions: { show: displayForBothModels },
 		default: 'en',
 		description: 'Language code of the audio (e.g., "en" for English)',
 	},
@@ -44,7 +44,7 @@ export const speechToTextTranscribeDescription: INodeProperties[] = [
 		displayName: 'Task',
 		name: 'task',
 		type: 'options',
-		displayOptions: { show: displayForWhisper },
+		displayOptions: { show: displayForBothModels },
 		options: [
 			{
 				name: 'Transcribe',

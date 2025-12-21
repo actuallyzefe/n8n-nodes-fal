@@ -17,9 +17,13 @@ export async function executeWizper(
 
 	// Get required parameters
 	const audioUrl = context.getNodeParameter('audioUrl', itemIndex) as string;
+	const language = context.getNodeParameter('language', itemIndex) as string;
+	const task = context.getNodeParameter('task', itemIndex) as string;
 
 	const body: IDataObject = {
 		audio_url: audioUrl,
+		language,
+		task,
 	};
 
 	// Submit to queue
